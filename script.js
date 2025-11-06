@@ -29,7 +29,6 @@ async function loadSongs() {
     });
 
     if (res.status === 401) {
-      // 🔹 토큰이 만료되거나 잘못된 경우
       alert("세션이 만료되었습니다. 다시 로그인해주세요.");
       localStorage.removeItem("token");
       window.location.href = "login.html";
@@ -43,7 +42,6 @@ async function loadSongs() {
       date: item.uploadDate.split("T")[0],
       title: item.title,
       artist: item.artist,
-      // 🔹 올바른 이미지 경로로 수정
       albumCover: `${SERVER_URL}/uploads/${item.filename}`,
       url: item.url,
     }));
@@ -58,8 +56,9 @@ async function loadSongs() {
 // 🎵 업로드 폼 열기
 addSongBtn.addEventListener("click", () => {
   uploadModal.classList.add("active");
-  const today = new Date().toISOString().split("T")[0];
-  document.getElementById("songDate").value = today;
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  document.getElementById("songDate").value = local.toISOString().split("T")[0];
 });
 
 // ❌ 닫기 버튼
@@ -77,7 +76,7 @@ songForm.addEventListener("submit", async (e) => {
   const artist = document.getElementById("songArtist").value.trim();
   const url = document.getElementById("songCover").value.trim();
 
-  const token = localStorage.getItem("token"); // 🔹 누락되어 있던 토큰 가져오기
+  const token = localStorage.getItem("token");
   if (!token) {
     alert("로그인이 필요합니다.");
     window.location.href = "login.html";
