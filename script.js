@@ -163,13 +163,17 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 });
 
 function formatDate(dateStr) {
-  const date = new Date(dateStr + "T00:00:00");
+  // 입력된 문자열이 YYYY-MM-DD 형식일 때
+  const [year, month, day] = dateStr.split("-");
+  const date = new Date(year, month - 1, day); // 로컬 시간 기준 생성
+
   return date.toLocaleDateString("ko-KR", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
 }
+
 
 // 🚀 시작 시 서버에서 데이터 불러오기
 loadSongs();
