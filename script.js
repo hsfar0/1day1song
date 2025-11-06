@@ -8,7 +8,7 @@ const scrollLeft = document.getElementById("scrollLeft");
 const scrollRight = document.getElementById("scrollRight");
 const galleryWrapper = document.getElementById("galleryWrapper");
 
-const SERVER_URL = "http://localhost:3000"; // Node.js 서버 주소
+const SERVER_URL = "https://oneday1song.onrender.com"; // Node.js 서버 주소
 
 let songs = [];
 
