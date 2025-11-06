@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Songs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div>
+                    <h1 class="title">Daily Songs</h1>
+                    <p class="subtitle">매일의 음악을 기록하세요</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-add-song" id="addSongBtn">
+                        <span class="btn-icon">+</span>
+                        Add Song
+                    </button>
+                    <button class="btn-login" id="loginBtn">
+                        Login
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <div class="gallery-wrapper" id="galleryWrapper">
+                <button class="scroll-btn scroll-left" id="scrollLeft" style="display: none;">
+                    <span>‹</span>
+                </button>
+
+                <div class="gallery-container" id="galleryContainer">
+                    <!-- Songs will be inserted here by JavaScript -->
+                </div>
+
+                <button class="scroll-btn scroll-right" id="scrollRight">
+                    <span>›</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Song</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="songForm" class="modal-form">
+                <div class="form-group">
+                    <label for="songDate">Date</label>
+                    <input type="date" id="songDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="songTitle">Song Title</label>
+                    <input type="text" id="songTitle" placeholder="Enter song title" required>
+                </div>
+                <div class="form-group">
+                    <label for="songArtist">Artist</label>
+                    <input type="text" id="songArtist" placeholder="Enter artist name" required>
+                </div>
+                <div class="form-group">
+                    <label for="songCover">Album Cover URL</label>
+                    <input type="url" id="songCover" placeholder="Enter image URL" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-submit">Add Song</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
