@@ -416,8 +416,7 @@ body {
 }
 
 /* 버튼 공통 */
-.btn-submit,
-.btn-login {
+.btn-submit {
   font-weight: 600;
   padding: 12px;
   border-radius: 8px;
@@ -428,9 +427,20 @@ body {
   text-align: center;
 }
 
+.btn-login {
+  font-weight: 600;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
 /* 로그인/회원가입 버튼 스타일 */
 .btn-login {
-  background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+  background: linear-gradient(90deg,rgba(51, 65, 85, 1) 0%, rgba(64, 66, 94, 1) 100%);
   color: white;
 }
 
