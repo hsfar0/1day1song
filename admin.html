@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg-primary, #0f172a);
+      color: var(--text-primary, #fff);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .json-section {
+      margin-bottom: 40px;
+    }
+
+    .json-section h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-color, #475569);
+      padding-bottom: 4px;
+    }
+
+    pre {
+      background: var(--bg-secondary, #1e293b);
+      padding: 20px;
+      border-radius: 12px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      box-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,0.3));
+    }
+
+    button {
+      background: linear-gradient(to right, var(--accent-start, #a855f7), var(--accent-end, #ec4899));
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Panel</h1>
+
+    <div class="json-section">
+      <h2>Users</h2>
+      <button id="loadUsers">Load Users</button>
+      <pre id="usersOutput">{}</pre>
+    </div>
+
+    <div class="json-section">
+      <h2>Data</h2>
+      <button id="loadData">Load Data</button>
+      <pre id="dataOutput">{}</pre>
+    </div>
+  </div>
+
+  <script>
+    const loadUsersBtn = document.getElementById('loadUsers');
+    const loadDataBtn = document.getElementById('loadData');
+    const usersOutput = document.getElementById('usersOutput');
+    const dataOutput = document.getElementById('dataOutput');
+
+    loadUsersBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('users.json');
+        if (!res.ok) throw new Error('users.json 불러오기 실패');
+        const data = await res.json();
+        usersOutput.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        usersOutput.textContent = err.message;
+      }
+    });
+
+    loadDataBtn.addEventListener('click', async () => {
+      try {
+        const res = await fetch('data.json');
+        if (!res.ok) throw new Error('data.json 불러오기 실패');
+        const data = await res.json();
+        dataOutput.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        dataOutput.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>

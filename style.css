@@ -91,19 +91,22 @@ body {
 
 /* 로그인 버튼 스타일 */
 .btn-login {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  padding: 10px 24px;
+  background: linear-gradient(90deg,rgba(51, 65, 85, 1) 0%, rgba(64, 66, 94, 1) 100%);
+  color: white;
+  border: none;
+  padding: 14px 20px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   transition: all 0.3s ease;
 }
 
 .btn-login:hover {
-  background: var(--border-color);
+  box-shadow: 0 5px 15px rgb(55, 52, 84);
   transform: translateY(-2px);
 }
 
@@ -371,6 +374,83 @@ body {
   box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
 }
 
+/* 로그인 박스 */
+.login-box {
+  background: var(--bg-secondary);
+  padding: 40px 32px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.3s ease;
+  text-align: center;
+}
+
+.login-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.login-box input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.login-box input::placeholder {
+  color: var(--text-secondary);
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: var(--accent-start);
+}
+
+/* 버튼 공통 */
+.btn-submit,
+.btn-login {
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+/* 로그인/회원가입 버튼 스타일 */
+.btn-login {
+  background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+  color: white;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+}
+
+/* submit 버튼 따로 필요하면 그대로 둬도 됨 */
+.btn-submit {
+  background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+  color: white;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
   .header {
@@ -400,4 +480,14 @@ body {
   .modal-content {
     padding: 24px;
   }
+
+  .login-box {
+    padding: 32px 24px;
+    margin: 60px 16px;
+  }
+
+  .login-box h2 {
+    font-size: 24px;
+  }
+
 }
