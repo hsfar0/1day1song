@@ -38,7 +38,7 @@ body {
   margin: 0 auto;
 }
 
-/* Header */
+/* 헤더 */
 .header {
   display: flex;
   justify-content: space-between;
@@ -63,7 +63,7 @@ body {
   gap: 12px;
 }
 
-/* Button */
+/* 노래 추가 버튼 */
 .btn-add-song {
   background: linear-gradient(to right, var(--accent-start), var(--accent-end));
   color: white;
@@ -89,7 +89,7 @@ body {
   font-weight: bold;
 }
 
-/* 로그인 버튼 스타일 */
+/* 로그인 버튼 */
 .btn-login {
   background: linear-gradient(90deg,rgba(51, 65, 85, 1) 0%, rgba(64, 66, 94, 1) 100%);
   color: white;
@@ -110,7 +110,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Gallery */
+/* 갤러리 */
 .gallery-wrapper {
   position: relative;
   display: flex;
@@ -133,7 +133,7 @@ body {
   padding-right: 0;
 }
 
-/* Hide scrollbar */
+/* 스크롤바 숨기기 */
 .gallery-container::-webkit-scrollbar {
   display: none;
 }
@@ -143,7 +143,7 @@ body {
   scrollbar-width: none;
 }
 
-/* Scroll Buttons */
+/* 스크롤 버튼 */
 .scroll-btn {
   position: absolute;
   top: 50%;
@@ -177,7 +177,7 @@ body {
   opacity: 1;
 }
 
-/* Song Card */
+/* 노래 카드 */
 .song-card {
   flex-shrink: 0;
   width: 320px;
@@ -234,7 +234,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* Modal */
+/* 팝업 (modal) */
 .modal {
   display: none;
   position: fixed;
@@ -298,7 +298,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* Form */
+/* 업로드 폼 */
 .modal-form {
   display: flex;
   flex-direction: column;
@@ -449,7 +449,6 @@ body {
   box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
 }
 
-/* submit 버튼 따로 필요하면 그대로 둬도 됨 */
 .btn-submit {
   background: linear-gradient(to right, var(--accent-start), var(--accent-end));
   color: white;
@@ -461,7 +460,7 @@ body {
 }
 
 
-/* Responsive */
+/* 반응형 */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

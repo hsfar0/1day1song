@@ -6,6 +6,7 @@ const path = require("path");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const axios = require("axios");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("Server is alive! 🌐");
 });
 
-// 5분(300,000ms)마다 자기 자신에게 요청
+// Render Wake Up (5분)
 setInterval(async () => {
   try {
     await axios.get(SELF_URL);
@@ -31,7 +32,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// 🔹 데이터 파일들
+// 데이터 파일들
 const USERS_FILE = path.join(__dirname, "users.json");
 const DATA_FILE = path.join(__dirname, "data.json");
 
@@ -47,7 +48,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// 📌 회원가입
+// 회원가입
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
 
@@ -67,7 +68,7 @@ app.post("/signup", async (req, res) => {
   res.json({ message: "회원가입 성공" });
 });
 
-// 📌 로그인
+// 로그인
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const users = JSON.parse(fs.readFileSync(USERS_FILE));
@@ -81,7 +82,7 @@ app.post("/login", async (req, res) => {
   res.json({ token });
 });
 
-// 📌 인증 미들웨어
+// 인증 미들웨어
 function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader) return res.status(401).json({ message: "로그인이 필요합니다." });
@@ -96,7 +97,7 @@ function authMiddleware(req, res, next) {
   }
 }
 
-// 📌 이미지 업로드 (로그인한 유저만)
+// 이미지 업로드 (로그인한 유저만)
 app.post("/upload", authMiddleware, upload.single("image"), (req, res) => {
   const { title, artist, url } = req.body;
   const newImage = {
@@ -115,7 +116,7 @@ app.post("/upload", authMiddleware, upload.single("image"), (req, res) => {
   res.json({ message: "업로드 성공", file: newImage });
 });
 
-// 📌 유저별 이미지 불러오기
+// 유저별 이미지 불러오기
 app.get("/images", authMiddleware, (req, res) => {
   const data = JSON.parse(fs.readFileSync(DATA_FILE));
   const userData = data.filter((d) => d.user === req.user.username);

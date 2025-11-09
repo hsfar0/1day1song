@@ -8,16 +8,16 @@ const scrollLeft = document.getElementById("scrollLeft");
 const scrollRight = document.getElementById("scrollRight");
 const galleryWrapper = document.getElementById("galleryWrapper");
 
-const SERVER_URL = "https://oneday1song.onrender.com"; // Node.js 서버 주소
+const SERVER_URL = "https://oneday1song.onrender.com"; // Render API 서버
 
 let songs = [];
 
-// 🟢 서버에서 노래 목록 불러오기
+// 서버에서 노래 목록 불러오기
 async function loadSongs() {
   try {
     const token = localStorage.getItem("token");
 
-    // 🔹 토큰이 없으면 로그인 페이지로 리다이렉트
+    // 토큰이 없으면 로그인 페이지로
     if (!token) {
       alert("로그인이 필요합니다.");
       window.location.href = "login.html";
@@ -53,7 +53,7 @@ async function loadSongs() {
   }
 }
 
-// 🎵 업로드 폼 열기
+// 업로드 폼 열기
 addSongBtn.addEventListener("click", () => {
   uploadModal.classList.add("active");
   const now = new Date();
@@ -61,14 +61,14 @@ addSongBtn.addEventListener("click", () => {
   document.getElementById("songDate").value = local.toISOString().split("T")[0];
 });
 
-// ❌ 닫기 버튼
+// 닫기 버튼
 closeModal.addEventListener("click", () => uploadModal.classList.remove("active"));
 cancelBtn.addEventListener("click", () => uploadModal.classList.remove("active"));
 uploadModal.addEventListener("click", (e) => {
   if (e.target === uploadModal) uploadModal.classList.remove("active");
 });
 
-// 📤 서버로 업로드
+// 서버로 업로드
 songForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -117,7 +117,7 @@ songForm.addEventListener("submit", async (e) => {
   };
 });
 
-// ⬅️➡️ 스크롤
+// 스크롤
 scrollLeft.addEventListener("click", () => {
   galleryContainer.scrollBy({ left: -400, behavior: "smooth" });
   checkScrollButtons();
@@ -137,7 +137,7 @@ function checkScrollButtons() {
   scrollRight.style.display = canScrollRight ? "flex" : "none";
 }
 
-// 🎨 갤러리 렌더링
+// 갤러리 렌더링
 function renderGallery() {
   galleryContainer.innerHTML = songs
     .map(
@@ -157,7 +157,7 @@ function renderGallery() {
     .join("");
 }
 
-// 로그인 버튼 클릭 시 login.html로 이동
+// 로그인 버튼
 document.getElementById("loginBtn").addEventListener("click", () => {
   window.location.href = "login.html";
 });
@@ -175,5 +175,5 @@ function formatDate(dateStr) {
 }
 
 
-// 🚀 시작 시 서버에서 데이터 불러오기
+// 시작 시 서버에서 데이터 불러오기
 loadSongs();
