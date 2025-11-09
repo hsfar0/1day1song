@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 // Render Wake Up (5분)
 setInterval(async () => {
   try {
-    await axios.get(SELF_URL);
+    await axios.get(SERVER_URL);
     console.log("Keep-alive ping sent ✅");
   } catch (err) {
     console.error("Keep-alive ping failed ❌", err.message);
