@@ -10,6 +10,21 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SECRET_KEY = process.env.SECRET_KEY || 'dev-secret';
+const SERVER_URL = "https://oneday1song.onrender.com";
+
+app.get("/", (req, res) => {
+  res.send("Server is alive! 🌐");
+});
+
+// 5분(300,000ms)마다 자기 자신에게 요청
+setInterval(async () => {
+  try {
+    await axios.get(SELF_URL);
+    console.log("Keep-alive ping sent ✅");
+  } catch (err) {
+    console.error("Keep-alive ping failed ❌", err.message);
+  }
+}, 300000);
 
 app.listen(PORT, () => console.log(`✅ 서버 실행 중: ${PORT}`));
 app.use(cors());
